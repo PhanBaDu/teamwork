@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'src/screens/home/home_screen.dart';
 import 'src/screens/marketplace/marketplace_screen.dart';
 import 'src/screens/notifications/notifications_screen.dart';
@@ -14,13 +15,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CupertinoApp(
+    return CupertinoApp(
       debugShowCheckedModeBanner: false,
       title: 'Facebook Clone',
-      theme: CupertinoThemeData(
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('vi', 'VN'),
+        Locale('en', 'US'),
+      ],
+      theme: const CupertinoThemeData(
         primaryColor: CupertinoColors.activeBlue,
       ),
-      home: MainScreen(),
+      home: const MainScreen(),
     );
   }
 }
