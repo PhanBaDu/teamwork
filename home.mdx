@@ -8,7 +8,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // Unsplash Placeholder URLs for High-Quality Social UI
+  // Modern Social Media Placeholder URLs
   final String myProfileUrl =
       'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop';
   final String femaleProfileUrl =
@@ -22,23 +22,46 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1877F2)),
-        useMaterial3: true,
-      ),
-      child: Material(
-        child: Scaffold(
-          backgroundColor: Colors.grey[300],
-          body: SafeArea(
-            child: Column(
-              children: [
-                _buildHeader(),
-                Expanded(
-                  child: _buildFeedTab(),
+    return DefaultTabController(
+      length: 6,
+      child: Scaffold(
+        backgroundColor: Colors.grey[300],
+        body: SafeArea(
+          child: Column(
+            children: [
+              _buildHeader(),
+              Material(
+                elevation: 1,
+                color: Colors.white,
+                child: TabBar(
+                  indicatorColor: const Color(0xFF1877F2),
+                  indicatorWeight: 3,
+                  labelColor: const Color(0xFF1877F2),
+                  unselectedLabelColor: Colors.grey[600],
+                  dividerColor: Colors.transparent,
+                  tabs: const [
+                    Tab(icon: Icon(Icons.home, size: 28)),
+                    Tab(icon: Icon(Icons.ondemand_video, size: 28)),
+                    Tab(icon: Icon(Icons.storefront, size: 28)),
+                    Tab(icon: Icon(Icons.favorite_border, size: 28)),
+                    Tab(icon: Icon(Icons.notifications_none, size: 28)),
+                    Tab(icon: Icon(Icons.menu, size: 28)),
+                  ],
                 ),
-              ],
-            ),
+              ),
+              Expanded(
+                child: TabBarView(
+                  children: [
+                    _buildFeedTab(),
+                    const Center(child: Text("Video Feed")),
+                    const Center(child: Text("Marketplace")),
+                    const Center(child: Text("Dating")),
+                    const Center(child: Text("Notifications")),
+                    const Center(child: Text("Menu")),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       ),
